@@ -1,6 +1,6 @@
 ---
 - name: "install http and start it"
-  hosts: ansi
+  hosts: tower
   become: true
   vars:
     web_package: httpd
