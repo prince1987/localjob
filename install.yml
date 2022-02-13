@@ -1,0 +1,22 @@
+---
+- name: "install http and start it"
+  hosts: ansi
+  become: true
+  vars:
+    web_package: httpd
+  tasks:
+   - name: "install require package"
+     yum:
+      name:
+      - "{{web_package}}"
+      state: latest
+   - name: start & enable web service
+     service:
+        name: "{{web_package}}"
+        enabled: true
+        state: started
+   - name: copy the content 
+     copy:
+         content: "This is managed by ansible\n"
+         dest: /var/www/html/index.html
+
